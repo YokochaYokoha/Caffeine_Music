@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="./mark.png">
+  <meta name="og:image" content="./mark.png">
+  <meta name="twitter:title" content="Caffeine Music by Y.Yokoha Studio Projects">
+  <meta name="twitter:description" content="[日本語版]CaffeineCSSを活用したモダンなローカルファイル音楽プレイヤーサイト">
+  <meta name="description" content="CaffeineCSSを活用したモダンなローカルファイル音楽プレイヤーサイト(JP Edition)">
+ 
+  <title>Caffeine Music (JP)</title>
+  <meta charset="UTF-8">
+  <link href="caffeine.css" rel="stylesheet"/>
+</head>
+<style>
+    .btn
+    {
+        width: 40px;
+        height: 30px;
+        cursor: pointer;
+    }
+    /*
+#right
+{
+min-width: 100%;
+padding: 20px;
+box-sizing: border-box;
+}
+.mainui
+{
+ min-width: 100%;
+padding: 20px;
+box-sizing: border-box; 
+}*/
+#album-art
+{
+    width: 50vw;
+    max-width: 400px;
+    border-radius: 15px;
+}
+textarea
+{
+    width: 100%;
+    resize: none;
+}
+#lyrics
+{
+    width: 50vw;
+    height: 30vh;
+    overflow-y: scroll;
+}
+#splash
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    z-index: 1000;/*高すぎますね...*/
+    background-image: url('./art.png'); 
+            background-size: cover; 
+            background-position: center;
+            background-repeat: no-repeat;
+}
+.fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+#drop-area {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            border: 2px dashed #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+        }
+        #drop-area.active {
+            opacity: 1;
+            pointer-events: auto;
+            background-color: rgba(240, 240, 240, 0.8);
+        }
+        @media only screen and (min-width: 800px) 
+        {
+#mediaq
+{
+display: flex;
+min-height: 50vh;
+justify-content: center;
+
+}
+#mediaq2
+{
+    display: flex;
+width: 40%;
+justify-content: center;
+align-items: center;
+}
+#album-art
+{
+    width: 100%;
+    border-radius: 15px;
+}
+        }
+</style>
+<body> 
+<!--スプラッシュ画面(後付けです)-->
+<div id="splash" >
+<div id="splashc"style="width: 80vw; display: flex;align-items: center;justify-content:center;">
+<div class="C">
+    <div class="A">  
+        <div class="title">  
+        <img src="./music.png" width="15%" height="15%">  
+        <h1>Caffeine Music</h1>   
+         </div>  
+         </div>  
+         <div class="marks-container">
+         <div class="marks-r-b2">
+             <p>Rev.1.0(Release)</p>  
+         </div>  
+         </div>
+</div> </div>
+</div>
+<div id="main" class="fade-in" style="display: none; ">
+
+      
+<p style="background-color: bisque;">Caffeine Music</p>
+<div class="C" id="mediaq" style="width: 50vw;">
+    <div id="aaholder" style="display: flex; justify-content: center; align-items: center;">
+    <img id="album-art" src="./art.png" alt="アルバムアート">
+</div>
+
+    <div class="L" id="mediaq2" style="text-align: center;">
+        <div style="display: block;">
+    <h2 id="title">Music</h2>
+    <p id="artist">with</p>
+    <p id="album">Caffeine CSS</p>
+</div>
+</div>
+</div>
+
+<div class="cnt"><p></p></div>
+<div class="C" style="width: 50vw;">
+    <input type="range" id="seek-bar" value="0" max="100" style="width: 100%;">
+    <div style="display: flex; justify-content: space-between;">
+    <p id="time0">0:00</p>
+    <p id="time1">0:00</p>
+</div>
+<div class="G" style="align-items: center; justify-content: center; display: flex;">
+    <img src="prev.png" class="btn" id="prev-button" alt="前の曲">
+    <img src="play.png" class="btn" id="play-pause-button" alt="再生/一時停止">
+    <img src="next.png" class="btn" id="next-button" alt="次の曲"> 
+</div>
+</div>
+<div class="cnt"><p></p></div>
+<div class="F" style="width: 50vw;">
+<div style="display: flex;">
+    <p id="spd">Speed:1x</p>
+    <input type="range" id="speed-control" value="1" min="0.5" max="2" step="0.1" style="width: 100%;"></div>
+    <div style="display: flex;">
+        <p>Volume</p><input type="range" id="volume-control" min="0" max="1" step="0.1" value="1" style="width: 100%;">
+    </div>
+
+    <audio id="audio-player" style="display:none;"></audio> <!--CORE!-->
+</div>
+<div id="drop-area" class="drop-area">ファイルやフォルダをここにドロップすると再生します。</div>
+
+<div class="cnt"><p></p></div><div class="cnt"><p></p></div><div class="cnt"><p></p></div><div class="cnt"><p></p></div>
+<div class="cnt"><p></p></div><div class="cnt"><p></p></div>
+<div class="H" style="width: 50vw; justify-content: center; text-align: center;">
+<p>ファイル選択</p>
+<p><small>フォルダを選択するとプレイリストを作成します。</small></p>
+<div class="marks" style="justify-content: space-between; display: flex;">
+<div class="marks-r-b" onclick="fileInput.click()">単曲選択</div>
+<input type="file" id="file-input" accept="audio/*" style="display:none;">
+<div class="marks-r-y" onclick="folderInput.click()">フォルダ選択</div>
+<input type="file" id="folder-input" accept="audio/*" webkitdirectory multiple style="display:none;">
+</div></div>
+<div class="cnt"><p></p></div>
+
+<div class="A" style="width: 50vw;">
+    <p>再生リスト</p>
+    <p><small>クリックまたはタップすると再生します</small></p>
+    <div id="playlist">
+
+    </div>
+</div>
+<div class="cnt"><p></p></div><div class="cnt"><p></p></div><div class="cnt"><p></p></div><div class="cnt"><p></p></div>
+<div class="M" style="width: 50vw;">
+    <p>About CaffeineMusic:</p>
+    <p>Caffeine CSSを使用したオープンソースのWebベース音楽プレーヤー</p>
+    <p>ブラウザーから「アップロードしますか?」と尋ねられる場合でも、読み込んだファイルはアップロードされず、全てお使いの端末上でのみ処理されるため、第三者がユーザーのファイルを確認することはできません。</p>
+  <p>その他Q&Aや注意事項、利用方法等は<a href="">ドキュメント</a>をご覧ください。</p>
+  
+    <div class="marks-container">
+    <div class="marks-r-r">
+        <p>Caffeine CSS</p>
+    </div>
+    <div class="marks-r-b2">
+        <p>PWA</p>
+    </div>
+    <div class="marks-r-o">
+        <p>Open Source</p>
+    </div>
+   </div>
+    <p>Copyrights:</p>
+    <p>©2024 YokochaYokoha</p>
+    <p>©2024 Y.Yokoha Studio Projects</p>
+    <p>Icons,Art Design,CaffeineCSS: Y.Yokoha</p>
+    <p>このサイトではBSDライセンスの適用されたライブラリ"jsmediatags"を使用しています。</p>
+    <p>This site uses "jsmediatags" (BSD License)</p>
+<br>
+<p>オープンソースライセンス表示/Open Source License+著作権表示/Copyrights(ご覧になれない場合はJavaScriptを有効にしてください)</p>
+    <div>
+<p>jsmediatags(BSD License)</p>
+<a href="https://github.com/aadsm/jsmediatags">https://github.com/aadsm/jsmediatags</a>
+<br>
+<textarea readonly name="BSD L indicator" rows="20" cols="20">
+    BSD License
+
+    Copyright (c) 2009 Opera Software ASA
+    
+    Copyright (c) 2015 António Afonso
+    
+    Copyright (c) 2008 Jacob Seidelin, http://blog.nihilogic.dk/
+    
+    Copyright (c) 2010 Joshua Kifer
+    
+    All rights reserved.
+    
+    Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+    
+    Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+    
+    Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+    
+    Neither the name Facebook nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+    
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+</textarea>
+
+<br>
+<br>
+
+<p>Caffeine CSS(横茶横葉Aライセンス[Y.Yokoha A License])</p>
+<a href="https://github.com/YokochaYokoha/Caffeine_CSS">https://github.com/YokochaYokoha/Caffeine_CSS</a>
+<br>
+<textarea readonly name="A L indicator" rows="20" cols="20">
+    横茶横葉Aライセンスの詳細 改定日:2024/09/23(内容は予告なしに変更されることがあります。ご注意ください。)
+    Aライセンスの概要-禁止事項は以下の通りです。
+    
+    横茶横葉の定める利用規約に従わない使用--x
+    
+    公序良俗に反する使用--x
+    
+    法律やその他法令に違反する使用(ここでは日本国の法令を適用)--x
+    
+    その他横茶横葉が不正使用と判断した使用--x(この項目に関しては曖昧であるため、横茶横葉へ直接お問い合わせください!)
+    
+    
+    サマリー
+    自由を意識した商用利用可能ライセンスです。法令、利用規約、公序良俗に反しない使用であればソースコードのみ(画像などのアセットデータを除きます)、ご自身の作品に活用できます!(ただし、使用不可と明記されているものを除きます。)
+    
+    さらにコードの改変も制約なしに可能です。見過ごせないほどよくない使い方をしていなければ、おそらく問題ありません!
+    
+    その他要件
+    [しなくてもOK!(してくれると嬉しいです!)]使用したソースコードへのリンクを貼付する。(より多くの方の手助けになればと思い、要件に追加しました)
+    
+    ソースコードの一部(製作者以外の方のコードを除く)のみを学習(新しいコードを知る)の目的でコピーしてご自身の製作するソフトウェアに活用する際は権利表記不要です!(でも権利表記、書いてくれたら励みになります!)
+</textarea>
+
+    </div>
+    <a href="https://github.com/YokochaYokoha/Caffeine_Music">
+    <div class="marks-r-g">
+        <p>[開発者向け]ソースコードはこちらです。(Bライセンス)</p>
+    </div></a>
+</div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+<script src="./mpsys.js"></script>
+<script>
+
+window.addEventListener("load",()=>
+{
+setTimeout(()=>
+{
+document.getElementById("splash").style.display="none";
+document.getElementById("main").style.display="block";
+}
+,3000);
+
+}
+);
+
+</script>
+</body>
+</html>

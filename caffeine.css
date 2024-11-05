@@ -1,0 +1,338 @@
+body 
+{
+    font-family: Arial, sans-serif ;
+    margin: 0;
+    padding: 0;
+    background-color: #EFFFDF;
+    color: #333;
+display: flex;
+flex-direction: column;
+align-items: center;
+overflow-x: hidden;
+}
+
+header
+{
+    position: relative;
+    overflow: hidden;
+    height: 60%;
+    h3
+    {
+      background-color: #9fdb77;  
+    }
+}
+.marks-container
+{
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+.marks-container-nowrap
+{
+    display: flex;
+    justify-content: left;
+}
+.marks-r-b
+{
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(133, 185, 230);
+    
+    border-radius: 15px;
+    
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    user-select: none;
+    max-width: 900px;
+    
+    
+}
+.marks-r-r
+{
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(230, 133, 162);
+    
+    border-radius: 15px;
+    
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    user-select: none;
+    max-width: 900px;
+    
+}
+.marks-r-g
+{
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(133, 230, 149);
+    
+    border-radius: 15px;
+    
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    user-select: none;
+    max-width: 900px;
+    
+}
+.marks-r-y
+{
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(230, 206, 133);
+    
+    border-radius: 15px;
+    
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    user-select: none;
+    max-width: 900px;
+    
+}
+.marks-r-o
+{
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(230, 162, 133);
+    
+    border-radius: 15px;
+    
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    user-select: none;
+    max-width: 900px;
+    
+}
+.marks-r-b2
+{
+    padding-top: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(174, 229, 255);
+    
+    border-radius: 15px;
+    
+    box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+    user-select: none;
+    max-width: 900px;
+    
+}
+.cnt
+{
+    
+    margin: 0;
+    width: 10px;
+    background-color: #ffffff;
+    flex-grow: 1;
+}
+.A
+{
+padding: 20px;
+background-color: aliceblue;
+
+border-radius: 15px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+}
+.title
+{
+    display: flex;
+
+    align-items: center;
+}
+.title h1
+{
+
+    width: 100%;
+    background-color: white;
+}
+
+.B
+{
+padding: 20px;
+background-color: #d0f4b7;
+
+border-radius: 50px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+}
+.C
+{
+padding: 20px;
+background-color:bisque;
+
+border-radius: 15px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+}
+.D
+{
+padding: 20px;
+background-color:mediumaquamarine;
+
+border-radius: 50px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+}
+    .E
+{
+padding: 20px;
+background-color:rgb(187, 254, 232);
+
+border-radius: 15px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+}
+    .F
+{
+padding: 20px;
+background-color:rgb(198, 244, 244);
+
+border-radius: 50px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+}
+    .G
+{
+padding: 20px;
+background-color:white;
+
+border-radius: 15px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+       overflow: hidden;
+}
+.H
+{
+padding: 20px;
+background-color:rgb(248, 152, 152);
+
+border-radius: 50px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+       overflow: hidden;
+}
+.I
+{
+padding: 20px;
+background-color:rgb(152, 197, 255);
+
+border-radius: 50px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+       overflow: hidden;
+}
+.J
+{
+padding: 20px;
+background-color:rgb(237, 188, 255);
+
+border-radius: 15px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+       overflow: hidden;
+}
+.K
+{
+padding: 20px;
+background-color:rgb(247, 187, 187);
+
+border-radius: 50px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+       overflow: hidden;
+}
+.L
+{
+padding: 20px;
+background-color:rgb(235, 247, 187);
+
+border-radius: 15px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+       overflow: hidden;
+}
+.M
+{
+padding: 20px;
+background-color:rgb(236, 225, 73);
+
+border-radius: 50px;
+
+box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+
+max-width: 900px;
+
+margin: 0;
+       overflow: hidden;
+}
+
+.normaldiv
+{
+    
+    background-color: #ffc9c9;
+    padding: 20px;
+}
+
+footer
+{
+    width: 100vw;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 20px;
+    background-color:rgb(255, 255, 255);
+     overflow: hidden;
+     
+     
+}
+/*CaffeineCSS Rev.3*/
+/*©2024 Y.Yokoha All Rights Reserved.*/
+/*This style sheet is licensed under the Y.Yokoha A License.*/
